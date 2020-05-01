@@ -1,8 +1,58 @@
+//
+$(document).ready(function () {
+    //set current day
+    $("#currentDay").text(moment().format('MMMM Do YYYY'));
 
-setInterval(function () {
-    let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
-    $("#currentDay").text(currentTime);
 })
+
+
+//color for time slots
+var now = moment().hour();
+
+for (var i = 9; i < 18; i++) {
+
+    if (i < now) {
+        $("#hour-" + i).removeClass("past present future");
+        $("#hour-" + i).addClass("past");
+
+    } else if (i === now) {
+        $("#hour-" + i).removeClass("past present future");
+        $("#hour-" + i).addClass("present");
+
+    } else (i > now); {
+        $("#hour-" + i).removeClass("past present future");
+        $("#hour-" + i).addClass("future");
+    }
+};
+
+
+
+$(".saveBtn").on("click", function () {
+
+    event.preventDefault();
+
+});
+
+
+
+
+//local storage
+function localStorageGet() {
+    var nineHour = localStorage.getItem("#hour-9");
+    $("#hour-9").val(nineHour);
+}
+
+localStorageGet();
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -19,7 +69,6 @@ setInterval(function () {
 
 
 //! moment.js
-
 ; (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define(factory) :
