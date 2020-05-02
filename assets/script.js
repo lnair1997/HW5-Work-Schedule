@@ -7,10 +7,9 @@ $(document).ready(function () {
     $("#currentDay").text(moment().format('MMMM Do YYYY'));
 
     //color for time slots
-
     function timeTracker() {
 
-        for (var i=9; i < 18; i++) {
+        for (var i=9; i < 19; i++) {
 
             var now = moment().hour();
 
@@ -22,13 +21,11 @@ $(document).ready(function () {
                 $("#hour-" + i).removeClass("past present future");
                 $("#hour-" + i).addClass("present");
 
-            } else (i > now); {
+            } else {
                 $("#hour-" + i).removeClass("past present future");
                 $("#hour-" + i).addClass("future");
             }
-
         };
-
     };
     
     timeTracker()
@@ -36,7 +33,7 @@ $(document).ready(function () {
 
 
 
-
+//save button to set local storage value
     $(".saveBtn").on("click", function () {
         event.preventDefault();
 
