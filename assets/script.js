@@ -1,48 +1,69 @@
 //
 $(document).ready(function () {
+
+    var textInput;
+
     //set current day
     $("#currentDay").text(moment().format('MMMM Do YYYY'));
 
-})
+    //color for time slots
+
+    function timeTracker() {
+
+        for (var i=9; i < 18; i++) {
+
+            var now = moment().hour();
+
+            if (i < now) {
+                $("#hour-" + i).removeClass("past present future");
+                $("#hour-" + i).addClass("past");
+
+            } else if (i == now) {
+                $("#hour-" + i).removeClass("past present future");
+                $("#hour-" + i).addClass("present");
+
+            } else (i > now); {
+                $("#hour-" + i).removeClass("past present future");
+                $("#hour-" + i).addClass("future");
+            }
+
+        };
+
+    };
+    
+    timeTracker()
 
 
-//color for time slots
-var now = moment().hour();
 
-for (var i = 9; i < 18; i++) {
 
-    if (i < now) {
-        $("#hour-" + i).removeClass("past present future");
-        $("#hour-" + i).addClass("past");
 
-    } else if (i === now) {
-        $("#hour-" + i).removeClass("past present future");
-        $("#hour-" + i).addClass("present");
+    $(".saveBtn").on("click", function () {
+        event.preventDefault();
 
-    } else (i > now); {
-        $("#hour-" + i).removeClass("past present future");
-        $("#hour-" + i).addClass("future");
+        textInput = $("this").siblings("textarea");
+        var userInput = textInput.val();
+
+        var timeBlock = textInput.attr("id");
+        localStorage.setItem(timeBlock, userInput);
+
+    });
+
+
+
+
+    //local storage
+    function localStorageGet() {
+
+        $("#hour-9").val(localStorage.getItem("hour-9"))
     }
-};
 
-
-
-$(".saveBtn").on("click", function () {
-
-    event.preventDefault();
+    localStorageGet();
 
 });
 
 
 
 
-//local storage
-function localStorageGet() {
-    var nineHour = localStorage.getItem("#hour-9");
-    $("#hour-9").val(nineHour);
-}
-
-localStorageGet();
 
 
 
