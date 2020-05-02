@@ -1,15 +1,13 @@
 //
 $(document).ready(function () {
 
-    var textInput;
-
     //set current day
     $("#currentDay").text(moment().format('MMMM Do YYYY'));
 
     //color for time slots
     function timeTracker() {
 
-        for (var i=9; i < 19; i++) {
+        for (var i = 9; i < 19; i++) {
 
             var now = moment().hour();
 
@@ -27,34 +25,37 @@ $(document).ready(function () {
             }
         };
     };
-    
-    timeTracker()
+
+    timeTracker();
 
 
 
+    var textEle;
 
-//save button to set local storage value
+    //save button to set local storage value
     $(".saveBtn").on("click", function () {
         event.preventDefault();
 
-        textInput = $("this").siblings("textarea");
-        var userInput = textInput.val();
+        textEle = $(this).siblings("textarea")
+        var userInput = textEle.val();
 
-        var timeBlock = textInput.attr("id");
+        timeBlock = textEle.attr("id");
         localStorage.setItem(timeBlock, userInput);
 
     });
 
 
 
-
     //local storage
-    function localStorageGet() {
-
-        $("#hour-9").val(localStorage.getItem("hour-9"))
-    }
-
-    localStorageGet();
+    $("#hour-9").val(localStorage.getItem("hour-9"));
+    $("#hour-10").val(localStorage.getItem("hour-10"));
+    $("#hour-11").val(localStorage.getItem("hour-11"));
+    $("#hour-12").val(localStorage.getItem("hour-12"));
+    $("#hour-13").val(localStorage.getItem("hour-13"));
+    $("#hour-14").val(localStorage.getItem("hour-14"));
+    $("#hour-15").val(localStorage.getItem("hour-15"));
+    $("#hour-16").val(localStorage.getItem("hour-16"));
+    $("#hour-17").val(localStorage.getItem("hour-17"));
 
 });
 
